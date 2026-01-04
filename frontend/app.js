@@ -13,13 +13,18 @@ const BACKEND_URL = process.env.BACKEND_URL || "http://backend-backend.backend.s
 
 app.get("/", async (req, res) => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/users`);
+    const response = await axios.get(`${BACKEND_URL}/users`, {
+      timeout: 3000   // 🔴 VERY IMPORTANT
+    });
     res.render("index", { users: response.data });
   } catch (err) {
     console.error("Backend error:", err.message);
+
+    // ✅ Fail fast, do NOT block UI
     res.render("index", { users: [] });
   }
 });
+
 
 app.post("/add", async (req, res) => {
   try {
