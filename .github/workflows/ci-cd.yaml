@@ -20,8 +20,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Verify Docker login
-        run: docker whoami
 
       # ======================
       # Backend Image
