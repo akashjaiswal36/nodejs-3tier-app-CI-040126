@@ -1,0 +1,42 @@
+name: CI-CD pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: login to Docker hub
+        uses: actions/checkout@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # ======================
+      # Backend Image
+      # ======================
+
+      - name: Build and Push Backend
+        run: |
+          docker build -t ajs3ra8/backend:${{ github.sha }} ./backend
+          docker push ajs3ra8/backend:${{ github.sha }}
+          docker tag ajs3ra8/backend:${{ github.sha }} ajs3ra8/backend:latest
+          docker push ajs3ra8/backend:latest
+
+      # ======================
+      # Frontend Image
+      # ======================
+
+      - name: Build and Push Frontend
+        run: |
+          docker build -t ajs3ra8/frontend:${{ github.sha }} ./frontend
+          docker push ajs3ra8/frontend:${{ github.sha }}
+          docker tag ajs3ra8/frontend:${{ github.sha }} ajs3ra8/frontend:latest
+          docker push ajs3ra8/frontend:latest
