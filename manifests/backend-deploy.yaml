@@ -16,7 +16,7 @@ spec:
       containers:
       - name: backend
         image: ajs3ra8/backend:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 4000
         env:

@@ -9,7 +9,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://backend:4000";
+const BACKEND_URL = process.env.BACKEND_URL || "http://backend-backend.backend.svc.cluster.local:4000";
 
 app.get("/", async (req, res) => {
   try {
