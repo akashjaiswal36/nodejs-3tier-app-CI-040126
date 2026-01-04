@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3-Tier GitOps App</title>
+  <style>
+    body { font-family: Arial; background: #f4f6f8; padding: 30px }
+    input, button { padding: 8px; margin: 5px }
+  </style>
+</head>
+<body>
+  <h2>👨‍💻 User Management</h2>
+
+  <form action="/add" method="POST">
+    <input name="name" placeholder="Name" required />
+    <input name="email" placeholder="Email" required />
+    <button>Add User</button>
+  </form>
+
+  <ul>
+    <% users.forEach(u => { %>
+      <li><%= u.name %> — <%= u.email %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
