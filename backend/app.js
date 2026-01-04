@@ -11,6 +11,7 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
+
 app.get("/", (req, res) => {
   res.send("Backend API is running");
 });
